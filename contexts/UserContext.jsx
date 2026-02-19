@@ -42,6 +42,7 @@ export function UserProvider({ children }) {
       const session = await account.get();
       setUser(session);
     } catch (error) {
+      console.log(error.message);
       setUser(null);
     } finally {
       setAuthChecked(true);
@@ -52,11 +53,18 @@ export function UserProvider({ children }) {
     getInitialUserValue();
   }, []);
 
+  const contextValue = useMemo(
+    () => ({
+      user,
+      login,
+      register,
+      logout,
+      authChecked,
+    }),
+    [user, login, register, logout, authChecked],
+  );
+
   return (
-    <UserContext.Provider
-      value={{ user, login, register, logout, authChecked }}
-    >
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 }

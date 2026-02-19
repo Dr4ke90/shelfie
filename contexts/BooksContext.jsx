@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import { databases, client } from "../lib/appwrite";
 import { ID, Permission, Query, Role } from "react-native-appwrite";
 import { useUser } from "../hooks/useUser";
@@ -7,6 +7,27 @@ const DATABASE_ID = "6995c424003dddd01fdb";
 const COLLECTION_ID = "6996baa4001555181572";
 
 export const BooksContext = createContext();
+
+async function fetchBookById(id) {
+  try {
+    const response = await databases.getDocument(
+      DATABASE_ID,
+      COLLECTION_ID,
+      id,
+    );
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+async function deleteBook(id) {
+  try {
+    await databases.deleteDocument(DATABASE_ID, COLLECTION_ID, id);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
 
 export const BooksProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
@@ -24,19 +45,6 @@ export const BooksProvider = ({ children }) => {
       setBooks(response.documents);
     } catch (error) {
       console.error("Eroare la fetchBooks:", error.message);
-    }
-  }
-
-  async function fetchBookById(id) {
-    try {
-      const response = await databases.getDocument(
-        DATABASE_ID,
-        COLLECTION_ID,
-        id,
-      );
-      return response;
-    } catch (error) {
-      throw new Error(error.message);
     }
   }
 
@@ -60,14 +68,6 @@ export const BooksProvider = ({ children }) => {
       return newBook;
     } catch (error) {
       console.error("Appwrite Error:", error.message);
-      throw new Error(error.message);
-    }
-  }
-
-  async function deleteBook(id) {
-    try {
-      await databases.deleteDocument(DATABASE_ID, COLLECTION_ID, id);
-    } catch (error) {
       throw new Error(error.message);
     }
   }
@@ -99,10 +99,19 @@ export const BooksProvider = ({ children }) => {
     };
   }, [user]);
 
+  const contextValue = useMemo(
+    () => ({
+      books,
+      fetchBooks,
+      createBook,
+      fetchBookById,
+      deleteBook,
+    }),
+    [books, fetchBooks, createBook, fetchBookById, deleteBook],
+  );
+
   return (
-    <BooksContext.Provider
-      value={{ books, fetchBooks, createBook, fetchBookById, deleteBook }}
-    >
+    <BooksContext.Provider value={contextValue}>
       {children}
     </BooksContext.Provider>
   );
