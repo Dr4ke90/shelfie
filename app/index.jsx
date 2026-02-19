@@ -2,7 +2,7 @@ import "react-native-url-polyfill/auto";
 import { StyleSheet, Image } from "react-native";
 import { Link } from "expo-router";
 
-import Logo from "../assets/images/Logo1.jpg";
+import Logo from "../assets/images/Logo1.png";
 import ThemedView from "../components/ThemedView";
 import Spacer from "../components/Spacer";
 import ThemedText from "../components/ThemedText";
@@ -13,10 +13,10 @@ const Home = () => {
       <Image source={Logo} style={styles.image} />
 
       <ThemedText title={true} style={styles.title}>
-        The number 1
+        Shelfie App
       </ThemedText>
       <Spacer height={10} />
-      <ThemedText>Readind List APP</ThemedText>
+      <ThemedText>Readind Books</ThemedText>
       <Spacer height={50} />
 
       <Link href="/login" style={styles.link}>
