@@ -10,10 +10,10 @@ export function UserProvider({ children }) {
 
   async function login(email, password) {
     try {
-      await account.createEmailPasswordSession({ email, password });
-      const response = await account.get();
-      setUser(response);
-      return response;
+      await account.createEmailPasswordSession(email, password);
+      const session = await account.get();
+      setUser(session);
+      return session;
     } catch (error) {
       throw new Error(error.message);
     }
