@@ -12,7 +12,7 @@ import ThemedView from "../../components/ThemedView";
 import ThemedButton from "../../components/ThemedButton";
 import ThemedTextInput from "../../components/ThemedTextInput";
 import { useState } from "react";
-import { useUser } from "../../hooks/useUser";
+import { useUserContext } from "../../hooks/useUserContext";
 import { Colors } from "../../constants/Colors";
 
 const Login = () => {
@@ -20,7 +20,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const { login } = useUser();
+  const { login } = useUserContext();
 
   const handleSubmit = async () => {
     setError(null);

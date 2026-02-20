@@ -8,7 +8,7 @@ import ThemedButton from "../../../components/ThemedButton";
 
 import Spacer from "../../../components/Spacer";
 import { useEffect, useState } from "react";
-import { useBooks } from "../../../hooks/useBooks";
+import { useBooksContext } from "../../../hooks/useBooksContext";
 import ThemedLoader from "../../../components/ThemedLoader";
 import { Colors } from "../../../constants/Colors";
 
@@ -17,7 +17,7 @@ const BookDetails = () => {
 
   const { id } = useLocalSearchParams();
 
-  const { fetchBookById, deleteBook } = useBooks();
+  const { fetchBookById, deleteBook } = useBooksContext();
 
   const handleDelete = async () => {
     try {

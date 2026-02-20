@@ -1,10 +1,10 @@
 import { useRouter } from "expo-router";
-import { useUser } from "../../hooks/useUser";
+import { useUserContext } from "../../hooks/useUserContext";
 import { useEffect } from "react";
 import ThemedLoader from "../ThemedLoader";
 
 const UserOnly = ({ children }) => {
-  const { user, authChecked } = useUser();
+  const { user, authChecked } = useUserContext();
 
   const router = useRouter();
 

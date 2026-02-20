@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useUser } from "../../hooks/useUser";
+import { useUserContext } from "../../hooks/useUserContext";
 import GuestOnly from "../../components/auth/GuestOnly";
 
 const AuthLayout = () => {
-  const { user } = useUser();
+  const { user } = useUserContext();
 
   console.log("User in AuthLayout:", user);
 

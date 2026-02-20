@@ -2,11 +2,11 @@ import { StyleSheet } from "react-native";
 import ThemedText from "../../components/ThemedText";
 import ThemedView from "../../components/ThemedView";
 import Spacer from "../../components/Spacer";
-import { useUser } from "../../hooks/useUser";
+import { useUserContext } from "../../hooks/useUserContext";
 import ThemedButton from "../../components/ThemedButton";
 
 const Profile = () => {
-  const { user, logout } = useUser();
+  const { user, logout } = useUserContext();
 
   return (
     <ThemedView style={styles.container}>

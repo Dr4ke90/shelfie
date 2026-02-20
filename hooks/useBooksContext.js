@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { BooksContext } from "../contexts/BooksContext";
 
-export function useBooks() {
+export function useBooksContext() {
   const context = useContext(BooksContext);
 
   if (!context) {

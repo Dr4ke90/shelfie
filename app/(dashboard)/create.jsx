@@ -7,7 +7,7 @@ import {
 import ThemedText from "../../components/ThemedText";
 import ThemedView from "../../components/ThemedView";
 import Spacer from "../../components/Spacer";
-import { useBooks } from "../../hooks/useBooks";
+import { useBooksContext } from "../../hooks/useBooksContext";
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import ThemedTextInput from "../../components/ThemedTextInput";
@@ -19,7 +19,7 @@ const Create = () => {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { createBook } = useBooks();
+  const { createBook } = useBooksContext();
   const route = useRouter();
 
   const handleSubmit = async () => {

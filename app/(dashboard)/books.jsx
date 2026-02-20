@@ -4,13 +4,13 @@ import ThemedText from "../../components/ThemedText";
 import ThemedView from "../../components/ThemedView";
 import ThemedCard from "../../components/ThemedCard";
 
-import { useBooks } from "../../hooks/useBooks";
 import { Colors } from "../../constants/Colors";
 import Spacer from "../../components/Spacer";
 import { useRouter } from "expo-router";
+import { useBooksContext } from "../../hooks/useBooksContext";
 
 const Books = () => {
-  const { books } = useBooks();
+  const { books } = useBooksContext();
   const router = useRouter();
 
   return (

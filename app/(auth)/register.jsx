@@ -11,7 +11,7 @@ import ThemedView from "../../components/ThemedView";
 import ThemedButton from "../../components/ThemedButton";
 import ThemedTextInput from "../../components/ThemedTextInput";
 import { useState } from "react";
-import { useUser } from "../../hooks/useUser";
+import { useUserContext } from "../../hooks/useUserContext";
 import { Colors } from "../../constants/Colors";
 
 const Register = () => {
@@ -19,7 +19,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const { register } = useUser();
+  const { register } = useUserContext();
 
   const handleRegister = async () => {
     setError(null);

@@ -1,7 +1,7 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import { databases, client } from "../lib/appwrite";
 import { ID, Permission, Query, Role } from "react-native-appwrite";
-import { useUser } from "../hooks/useUser";
+import { useUserContext } from "../hooks/useUserContext";
 
 const DATABASE_ID = "6995c424003dddd01fdb";
 const COLLECTION_ID = "6996baa4001555181572";
@@ -32,7 +32,7 @@ async function deleteBook(id) {
 export const BooksProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
 
-  const { user } = useUser();
+  const { user } = useUserContext();
 
   async function fetchBooks() {
     try {
